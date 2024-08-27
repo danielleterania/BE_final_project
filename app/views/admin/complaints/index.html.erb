@@ -1,0 +1,10 @@
+<h1>Complaints and Suggestions</h1>
+<% @complaints.each do |complaint| %>
+  <div>
+    <p><%= complaint.content %></p>
+    <%= form_with url: respond_complaint_path(complaint), method: :patch do |form| %>
+      <%= form.text_area :response %>
+      <%= form.submit 'Respond' %>
+    <% end %>
+  </div>
+<% end %>

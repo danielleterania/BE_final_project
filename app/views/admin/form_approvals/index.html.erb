@@ -1,0 +1,7 @@
+<h1>Form Approvals</h1>
+<% @forms.each do |form| %>
+  <div>
+    <p><%= form.content %></p>
+    <%= button_to 'Approve', approve_form_path(form), method: :patch %>
+  </div>
+<% end %>

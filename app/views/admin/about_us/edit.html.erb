@@ -1,0 +1,9 @@
+<h1>Edit About Us</h1>
+<%= form_with model: @about_u, url: admin_about_us_path, method: :patch do |form| %>
+  <div class="form-group">
+    <%= form.label :content, 'About Us Content' %>
+    <%= form.text_area :content, rows: 5, class: 'form-control' %>
+  </div>
+
+  <%= form.submit 'Update About Us', class: 'btn btn-primary' %>
+<% end %>
