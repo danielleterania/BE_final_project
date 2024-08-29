@@ -1,0 +1,11 @@
+<h1>Forms</h1>
+
+<% @forms.each do |form| %>
+  <div class="form">
+    <h2><%= form.title %></h2>
+    <%= form_with model: form, url: users_forms_path, method: :post do |f| %>
+      <%= f.text_area :content, placeholder: 'Fill out this form', class: 'form-control' %>
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+<% end %>
