@@ -11,21 +11,17 @@
 <% end %>
 
 <h2>Complaints and Suggestions</h2>
-<%= form_with model: Complaint.new, url: users_complaints_path, local: true do |form| %>
-  <div class="form-group">
-    <%= form.label :content, 'Your Complaint or Suggestion' %>
-    <%= form.text_area :content, rows: 5, class: 'form-control' %>
-  </div>
-  <%= form.submit 'Submit', class: 'btn btn-primary' %>
-<% end %>
-
 <% if @complaints.present? %>
+  <h3>Your Previous Complaints</h3>
   <% @complaints.each do |complaint| %>
     <div class="complaint">
       <p><%= complaint.content %></p>
-      <p>Response: <%= complaint.response %></p>
+      <p>Response: <%= complaint.response.present? ? complaint.response : "No response yet" %></p>
     </div>
   <% end %>
 <% else %>
   <p>No complaints or suggestions submitted.</p>
 <% end %>
+
+<!-- Link to complaints section for filing a new complaint -->
+<%= link_to 'File a New Complaint', users_complaints_path %>

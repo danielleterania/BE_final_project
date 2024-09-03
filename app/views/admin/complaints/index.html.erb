@@ -1,8 +1,9 @@
 <h1>Complaints and Suggestions</h1>
 <% @complaints.each do |complaint| %>
   <div>
-    <p><%= complaint.content %></p>
-    <%= form_with url: respond_complaint_path(complaint), method: :patch do |form| %>
+    <p><strong>Complaint:</strong> <%= complaint.content %></p>
+    <p><strong>Response:</strong> <%= complaint.response.present? ? complaint.response : "No response yet" %></p>
+    <%= form_with url: respond_admin_complaint_path(complaint), method: :patch do |form| %>
       <%= form.text_area :response %>
       <%= form.submit 'Respond' %>
     <% end %>

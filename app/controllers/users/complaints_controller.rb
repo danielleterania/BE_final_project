@@ -5,9 +5,14 @@ module Users
     def create
       @complaint = current_user.complaints.new(complaint_params)
       if @complaint.save
-        redirect_to users_profile_path, notice: 'Complaint filed successfully.'
+        # Trigger a Pusher event when a new complaint is created
+        Pusher.trigger('complaints-channel', 'new-complaint', {
+          complaint_id: @complaint.id,
+          content: @complaint.content
+        })
+        redirect_to users_complaints_path, notice: 'Complaint filed successfully.'
       else
-        redirect_to users_profile_path, alert: 'Failed to file complaint.'
+        render :index
       end
     end
 
