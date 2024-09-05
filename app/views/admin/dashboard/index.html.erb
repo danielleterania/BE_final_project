@@ -1,8 +1,8 @@
 <h1>Admin Dashboard</h1>
-<%= link_to 'Approve User Sign Ups', admin_user_approvals_path, class: 'btn btn-primary' %><br>
-<%= link_to 'Respond to Complaints/Suggestions', admin_complaints_path, class: 'btn btn-primary' %><br>
-<%= link_to 'Post Announcements', admin_announcements_path, class: 'btn btn-primary' %><br>
-<%= link_to 'Approve Submitted Forms', admin_form_approvals_path, class: 'btn btn-primary' %><br>
-<%= link_to 'Edit About Us Page', edit_admin_about_us_path, class: 'btn btn-primary' %><br>
+<%= link_to 'User List', admin_user_approvals_path, class: 'btn btn-primary' %><br>
+<%= link_to 'Complaints', admin_complaints_path, class: 'btn btn-primary' %><br>
+<%= link_to 'Announcements', admin_announcements_path, class: 'btn btn-primary' %><br>
+<%= link_to 'Forms', admin_form_approvals_path, class: 'btn btn-primary' %><br>
+<%= link_to 'About Us', edit_admin_about_us_path, class: 'btn btn-primary' %><br>
 
 <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>

@@ -5,6 +5,7 @@ module Admin
 
     def index
       @announcements = Announcement.all
+      @announcement = Announcement.new
     end
 
     def create

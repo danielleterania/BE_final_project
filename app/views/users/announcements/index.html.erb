@@ -1,8 +1,11 @@
 <h1>Announcements</h1>
+<div id="announcements-list">
+  <% @announcements.each do |announcement| %>
+    <div class="announcement">
+      <h2><%= announcement.title %></h2>
+      <p><%= announcement.content %></p>
+    </div>
+  <% end %>
+</div>
 
-<% @announcements.each do |announcement| %>
-  <div class="announcement">
-    <h2><%= announcement.title %></h2>
-    <p><%= announcement.content %></p>
-  </div>
-<% end %>
+

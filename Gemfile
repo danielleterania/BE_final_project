@@ -16,6 +16,8 @@ gem "puma", ">= 5.0"
 
 gem "pusher"
 
+gem "webpacker"
+
 gem "devise"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
