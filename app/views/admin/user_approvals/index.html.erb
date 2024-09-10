@@ -1,7 +1,16 @@
 <h1>User Approvals</h1>
-<% @users.each do |user| %>
+
+<h2>Approved Users</h2>
+<% @approved_users.each do |user| %>
   <div>
     <p><%= user.email %></p>
-    <%= button_to 'Approve', approve_user_path(user), method: :patch %>
+  </div>
+<% end %>
+
+<h2>Users for Approval</h2>
+<% @pending_users.each do |user| %>
+  <div>
+    <p><%= user.email %></p>
+    <%= button_to 'Approve', approve_admin_user_approval_path(user), method: :patch %>
   </div>
 <% end %>

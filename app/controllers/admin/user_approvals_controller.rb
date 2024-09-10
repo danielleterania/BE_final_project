@@ -4,13 +4,20 @@ module Admin
     before_action :authorize_admin
 
     def index
-      @users = User.where(approved: false) # Fetch unapproved users
+      @approved_users = User.where(approved: true)
+      @pending_users = User.where(approved: false)
     end
 
     def approve
       user = User.find(params[:id])
       user.update(approved: true)
       redirect_to admin_user_approvals_path, notice: 'User approved.'
+    end
+
+    def pending
+      user = User.find(params[:id])
+      user.update(approved: false)
+      redirect_to admin_user_approvals_path
     end
 
     private

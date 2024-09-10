@@ -3,13 +3,17 @@ module Admin
     before_action :authenticate_user!
     before_action :authorize_admin
 
+    def index
+      @about_u = AboutU.all
+    end
+
     def edit
       @about_u = AboutU.first_or_initialize
     end
 
     def update
       @about_u = AboutU.first_or_initialize
-      if @about_u.update(about_us_params)
+      if @about_u.update(about_u_params)
         redirect_to admin_root_path, notice: 'About Us page updated.'
       else
         render :edit
@@ -19,7 +23,7 @@ module Admin
     private
 
     def about_u_params
-      params.require(:about_us).permit(:content)
+      params.require(:about_u).permit(:content)
     end
 
     def authorize_admin

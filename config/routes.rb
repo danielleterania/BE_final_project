@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :user_approvals, only: [:index] do
       member do
         patch :approve
+        patch :pending
       end
     end
     
