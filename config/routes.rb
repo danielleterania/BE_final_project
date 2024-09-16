@@ -20,11 +20,14 @@ Rails.application.routes.draw do
     
     resources :announcements, only: [:index, :create, :destroy]
     
-    resources :form_approvals, only: [:index] do
+    resources :form_approvals, only: [:index, :new, :create, :edit, :update, :show] do
       member do
-        patch :approve
+        get :approve
+        get :deny
       end
     end
+
+    resources :form_responses, only: [:index, :show]
     
     resource :about_us, only: [:edit, :update]
   end

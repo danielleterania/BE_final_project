@@ -1,7 +1,10 @@
-<h1><%= @form.title %></h1>
+<h1>Create New Form</h1>
 
-<%= form_with model: @form_response, url: users_forms_path, method: :post, local: true do |form| %>
-  <%= form.hidden_field :form_id, value: @form.id %>
+<%= form_with(model: @form, url: admin_form_approvals_path, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
 
   <div class="form-group">
     <%= form.label :name %>
@@ -28,5 +31,5 @@
     <%= form.text_area :details, class: 'form-control' %>
   </div>
 
-  <%= form.submit 'Submit Form', class: 'btn btn-primary' %>
+  <%= form.submit 'Create Form', class: 'btn btn-primary' %>
 <% end %>

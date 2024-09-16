@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_07_023357) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_12_120718) do
   create_table "about_us", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
@@ -33,11 +33,32 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_07_023357) do
     t.index ["user_id"], name: "index_complaints_on_user_id"
   end
 
+  create_table "form_responses", force: :cascade do |t|
+    t.integer "form_id", null: false
+    t.integer "user_id", null: false
+    t.string "name"
+    t.string "address"
+    t.string "contact_number"
+    t.date "date"
+    t.text "details"
+    t.boolean "approved"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["form_id"], name: "index_form_responses_on_form_id"
+    t.index ["user_id"], name: "index_form_responses_on_user_id"
+  end
+
   create_table "forms", force: :cascade do |t|
     t.text "content"
     t.boolean "approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "name"
+    t.string "address"
+    t.string "contact_number"
+    t.datetime "date"
+    t.text "details"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -64,5 +85,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_07_023357) do
   end
 
   add_foreign_key "complaints", "users"
+  add_foreign_key "form_responses", "forms"
+  add_foreign_key "form_responses", "users"
   add_foreign_key "payments", "users"
 end

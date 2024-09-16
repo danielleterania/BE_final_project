@@ -1,0 +1,37 @@
+<h1><%= @form.title %></h1>
+
+<%= link_to 'Back to Form List', admin_form_approvals_path, class: 'btn btn-secondary' %>
+
+<h2>Form Responses</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Contact Number</th>
+      <th>Date</th>
+      <th>Details</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @form_responses.each do |response| %>
+      <tr>
+        <td><%= response.name %></td>
+        <td><%= response.address %></td>
+        <td><%= response.contact_number %></td>
+        <td><%= response.date %></td>
+        <td><%= response.details %></td>
+        <td><%= response.approved ? 'Approved' : 'Not Approved' %></td>
+        <td>
+          <% if response.approved %>
+            <%= link_to 'Deny', deny_admin_form_approval_path(response), method: :patch, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to 'Approve', approve_admin_form_approval_path(response), method: :patch, class: 'btn btn-success' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

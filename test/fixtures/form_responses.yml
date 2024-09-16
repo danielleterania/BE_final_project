@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  form: one
+  user: one
+  name: MyString
+  address: MyString
+  contact_number: MyString
+  date: 2024-09-10
+  details: MyText
+  approved: false
+
+two:
+  form: two
+  user: two
+  name: MyString
+  address: MyString
+  contact_number: MyString
+  date: 2024-09-10
+  details: MyText
+  approved: false

@@ -1,7 +1,6 @@
-<h1>Form Approvals</h1>
-<% @forms.each do |form| %>
-  <div>
-    <p><%= form.content %></p>
-    <%= button_to 'Approve', approve_form_path(form), method: :patch %>
-  </div>
-<% end %>
+<h1>Admin Dashboard</h1>
+
+<%= link_to 'Create New Form', new_admin_form_approval_path, class: 'btn btn-primary' %>
+<%= link_to 'View Form Responses', admin_form_responses_path, class: 'btn btn-secondary' %>
+
+
