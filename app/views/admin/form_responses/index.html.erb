@@ -27,9 +27,9 @@
         <td><%= response.approved ? 'Approved' : 'Not Approved' %></td>
         <td>
           <% if response.approved %>
-            <%= link_to 'Deny', deny_admin_form_approval_path(response), method: :patch, class: 'btn btn-danger' %>
+            <%= link_to 'Deny', deny_admin_form_response_path(response), method: :patch, class: 'btn btn-danger' %>
           <% else %>
-            <%= link_to 'Approve', approve_admin_form_approval_path(response), method: :patch, class: 'btn btn-success' %>
+            <%= link_to 'Approve', approve_admin_form_response_path(response), method: :patch, class: 'btn btn-success' %>
           <% end %>
         </td>
       </tr>

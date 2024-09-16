@@ -1,9 +1,8 @@
-# app/controllers/admin/form_approvals_controller.rb
 module Admin
   class FormApprovalsController < ApplicationController
     before_action :authenticate_user!
     before_action :authorize_admin
-    before_action :set_form, only: [:show, :edit, :update, :approve, :deny]
+    before_action :set_form, only: [:edit, :update, :destroy]
 
     def index
       @forms = Form.all
@@ -22,10 +21,6 @@ module Admin
       end
     end
 
-    def show
-      @form_responses = @form.form_responses
-    end
-
     def edit
     end
 
@@ -37,19 +32,11 @@ module Admin
       end
     end
 
-    def approve
-      if @form.update(approved: true)
-        redirect_to admin_form_approvals_path, notice: 'Form approved.'
+    def destroy
+      if @form.destroy
+        redirect_to admin_form_approvals_path, notice: 'Form deleted successfully.'
       else
-        redirect_to admin_form_approvals_path, alert: 'Failed to approve the form.'
-      end
-    end
-
-    def deny
-      if @form.update(approved: false)
-        redirect_to admin_form_approvals_path, notice: 'Form denied.'
-      else
-        redirect_to admin_form_approvals_path, alert: 'Failed to deny the form.'
+        redirect_to admin_form_approvals_path, alert: 'Failed to delete the form.'
       end
     end
 
@@ -60,7 +47,7 @@ module Admin
     end
 
     def form_params
-      params.require(:form).permit(:title, :name, :address, :contact_number, :date, :details)
+      params.require(:form).permit(:title)
     end
 
     def authorize_admin

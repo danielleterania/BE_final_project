@@ -1,0 +1,28 @@
+<h1>My Form Responses</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Form Title</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Contact Number</th>
+      <th>Date</th>
+      <th>Details</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @form_responses.each do |response| %>
+      <tr>
+        <td><%= response.form.title %></td>
+        <td><%= response.name %></td>
+        <td><%= response.address %></td>
+        <td><%= response.contact_number %></td>
+        <td><%= response.date %></td>
+        <td><%= response.details %></td>
+        <td><%= response.approved ? 'Approved' : 'Not Approved' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

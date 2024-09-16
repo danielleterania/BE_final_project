@@ -12,7 +12,10 @@
       <tr>
         <td><%= form.title %></td>
         <td><%= link_to 'Fill Out', users_form_path(form), class: 'btn btn-primary' %></td>
+        <td><%= link_to 'View All Responses', users_form_form_responses_path(form), class: 'btn btn-info' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+

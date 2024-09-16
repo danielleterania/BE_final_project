@@ -20,14 +20,14 @@ Rails.application.routes.draw do
     
     resources :announcements, only: [:index, :create, :destroy]
     
-    resources :form_approvals, only: [:index, :new, :create, :edit, :update, :show] do
+    resources :form_approvals, only: [:index, :new, :create, :edit, :update, :show] 
+
+    resources :form_responses, only: [:index, :show] do
       member do
         get :approve
         get :deny
       end
     end
-
-    resources :form_responses, only: [:index, :show]
     
     resource :about_us, only: [:edit, :update]
   end
@@ -35,7 +35,9 @@ Rails.application.routes.draw do
   namespace :users do
     root to: 'dashboard#index'
     
-    resources :forms, only: [:index, :show, :create]
+    resources :forms, only: [:index, :show, :create] do
+      resources :form_responses, only: [:index]
+    end
     resources :announcements, only: [:index]
     resource :about_us, only: [:show]
     resource :bylaws, only: [:show]
