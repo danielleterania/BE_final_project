@@ -16,6 +16,8 @@ gem "puma", ">= 5.0"
 
 gem "pusher"
 
+gem "httparty"
+
 gem "webpacker"
 
 gem "devise"

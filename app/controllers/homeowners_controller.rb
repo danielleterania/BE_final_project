@@ -1,13 +1,13 @@
 class HomeownersController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_homeowner
+  
 
   def index
-  end
+    @weather_service = WeatherService.new
+    @weather = @weather_service.current_weather('Angono')
 
-  private
-
-  def authorize_homeowner
-    redirect_to root_path if current_user.email == 'admin@example.com'
+    if @weather.nil?
+      flash[:alert] = 'Unable to fetch weather data. Please try again later.'
+    end
   end
 end

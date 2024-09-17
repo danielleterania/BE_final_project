@@ -18,3 +18,11 @@
 
 <div class="featured-img" />
 
+<h2>Current Weather</h2>
+<% if @weather %>
+  <p>City: <%= @weather['name'] %></p>
+  <p>Temperature: <%= @weather['main']['temp'] %>°C</p>
+  <p>Weather: <%= @weather['weather'].first['description'] %></p>
+<% else %>
+  <p>Unable to fetch weather data. Please try again later.</p>
+<% end %>
