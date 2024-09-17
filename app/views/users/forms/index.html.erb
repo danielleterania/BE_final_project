@@ -3,16 +3,20 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Actions</th>
+      <th colspan="2">Title</th>
+      <th> Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @forms.each do |form| %>
       <tr>
-        <td><%= form.title %></td>
-        <td><%= link_to 'Fill Out', users_form_path(form), class: 'btn btn-primary' %></td>
-        <td><%= link_to 'View All Responses', users_form_form_responses_path(form), class: 'btn btn-info' %></td>
+        <td colspan="2" class="fs-14"><%= form.title %></td>
+        <td>
+          <div class="flex-center">
+            <%= link_to 'Fill Out', users_form_path(form), class: 'btn btn-menu' %>
+            <%= link_to 'View Responses', users_form_form_responses_path(form), class: 'btn btn-menu' %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>

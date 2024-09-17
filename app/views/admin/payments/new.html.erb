@@ -1,0 +1,27 @@
+<h1>New Payment Record</h1>
+
+<%= form_with model: @payment, url: admin_payments_path, method: :post, local: true do |form| %>
+  <div class="form-group">
+    <%= form.label :user_id, 'User' %>
+    <%= form.select :user_id, options_for_select(User.all.map { |u| [u.email, u.id] }), prompt: 'Select User', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :year, 'Year' %>
+    <%= form.number_field :year, value: Date.current.year, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :month, 'Month' %>
+    <%= form.select :month, options_for_select(%w[January February March April May June July August September October November December]), prompt: 'Select Month', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :amount, 'Amount' %>
+    <%= form.number_field :amount, step: '0.01', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :status, 'Status' %>
+    <%= form.select :status, options_for_select([['Paid', 'paid'], ['Overdue', 'overdue']]), class: 'form-control' %>
+  </div>
+  <%= form.submit 'Create Payment', class: 'btn btn-primary' %>
+<% end %>
+
+<%= link_to 'Back to Payments', admin_payments_path, class: 'btn btn-secondary' %>

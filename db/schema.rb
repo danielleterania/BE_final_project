@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_12_120718) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_17_104108) do
   create_table "about_us", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
@@ -67,7 +67,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_12_120718) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "year"
+    t.string "month"
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.integer "complaint_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["complaint_id"], name: "index_responses_on_complaint_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,4 +98,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_12_120718) do
   add_foreign_key "form_responses", "forms"
   add_foreign_key "form_responses", "users"
   add_foreign_key "payments", "users"
+  add_foreign_key "responses", "complaints"
 end

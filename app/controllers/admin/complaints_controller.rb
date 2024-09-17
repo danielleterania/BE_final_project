@@ -7,15 +7,13 @@ module Admin
       @complaints = Complaint.all
     end
 
+    def show
+      @complaint = Complaint.find(params[:id])
+    end
+
     def respond
       @complaint = Complaint.find(params[:id])
       if @complaint.update(complaint_params)
-        # Trigger a Pusher event when a complaint is updated
-        Pusher.trigger('complaints-channel', 'complaint-updated', {
-          complaint_id: @complaint.id,
-          content: @complaint.content,
-          response: @complaint.response
-        })
         redirect_to admin_complaints_path, notice: 'Complaint updated.'
       else
         render :index

@@ -13,3 +13,131 @@
  *= require_tree .
  *= require_self
  */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 38px;
+  color: navy;
+  margin: 0;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-menu {
+  font-size: 14px;
+  padding: 4px 12px;
+  border-radius: 14px;
+  background: transparent;
+  color: navy;
+}
+.btn-menu:hover {
+  background: navy;
+  color: white;
+}
+
+.btn-primary {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 6px 18px;
+  color: white;
+
+  border: 1px solid navy;
+  border-radius: 18px;
+  background: navy;
+}
+.btn-primary:hover {
+  background: navy;
+  color: white;
+}
+
+.header {
+  width: 100%;
+  max-width: 1200px;
+  padding: 12px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-items {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* .featured-img {
+  background-image: url("bg-img.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #cccccc;
+  width: 100vw;
+} */
+
+.featured-img {
+  background-image: url("featured-img.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #cccccc;
+  background-position: bottom;
+  width: 100vw;
+  height: 50vw;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.table {
+  table-layout: fixed;
+  border: 1px solid #000;
+  width: 100%;
+}
+
+.table th {
+  background: navy;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.table td {
+  padding: 6px 12px;
+}
+
+.justify-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

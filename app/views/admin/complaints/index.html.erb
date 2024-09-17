@@ -1,11 +1,22 @@
-<h1>Complaints and Suggestions</h1>
-<% @complaints.each do |complaint| %>
-  <div>
-    <p><strong>Complaint:</strong> <%= complaint.content %></p>
-    <p><strong>Response:</strong> <%= complaint.response.present? ? complaint.response : "No response yet" %></p>
-    <%= form_with url: respond_admin_complaint_path(complaint), method: :patch do |form| %>
-      <%= form.text_area :response %>
-      <%= form.submit 'Respond' %>
+<h1>All Complaints</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User Email</th>
+      <th>Complaint</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @complaints.each do |complaint| %>
+      <tr>
+        <td><%= complaint.user.email %></td>
+        <td><%= complaint.content %></td>
+        <td>
+          <%= link_to 'View', admin_complaint_path(complaint), class: 'btn btn-info' %>
+        </td>
+      </tr>
     <% end %>
-  </div>
-<% end %>
+  </tbody>
+</table>

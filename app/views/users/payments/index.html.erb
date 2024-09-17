@@ -1,0 +1,30 @@
+<h1>Payment Status for <%= @year %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <% @months.each do |month| %>
+        <th><%= month %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @months.each do |month| %>
+        <% payment = @payments.find { |p| p.month == month } %>
+        <td>
+          <% if payment %>
+            <%= form_with model: payment, url: users_payment_path(payment), method: :patch, local: true do |form| %>
+              <%= form.select :status, options_for_select([['Paid', 'paid'], ['Overdue', 'overdue']], payment.status), class: 'form-control' %>
+              <%= form.submit 'Update', class: 'btn btn-info' %>
+            <% end %>
+          <% else %>
+            No payment data
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Back to Profile', profile_path, class: 'btn btn-secondary' %>

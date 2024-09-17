@@ -11,8 +11,10 @@ Rails.application.routes.draw do
         patch :pending
       end
     end
+
+    resources :payments, only: [:index, :update, :new, :create]
     
-    resources :complaints, only: [:index] do
+    resources :complaints, only: [:index, :show, :update] do
       member do
         patch :respond
       end
@@ -35,14 +37,17 @@ Rails.application.routes.draw do
   namespace :users do
     root to: 'dashboard#index'
     
-    resources :forms, only: [:index, :show, :create] do
+    resources :forms, only: [:index, :show, :create] do  
       resources :form_responses, only: [:index]
     end
     resources :announcements, only: [:index]
     resource :about_us, only: [:show]
     resource :bylaws, only: [:show]
-    resources :complaints, only: [:create, :index]
+    resources :complaints, only: [:index, :create, :show]
+    resources :payments, only: [:index, :update]
   end
+
+    
 
   resource :profile, only: [:show] 
   resources :homeowners, only: [:index]

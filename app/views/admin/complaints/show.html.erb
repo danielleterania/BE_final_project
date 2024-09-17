@@ -1,0 +1,21 @@
+<h1>Complaint Details</h1>
+
+<p><strong>User:</strong> <%= @complaint.user.email %></p>
+<p><strong>Complaint:</strong> <%= @complaint.content %></p>
+<p><strong>Response:</strong> <%= @complaint.response.present? ? @complaint.response : "No response yet" %></p>
+
+<h2>Respond to Complaint</h2>
+<%= form_with model: @complaint, url: respond_admin_complaint_path(@complaint), method: :patch, local: true do |form| %>
+  <%= form.text_area :response, rows: 5, class: 'form-control' %>
+  <%= form.submit 'Submit Response', class: 'btn btn-primary' %>
+<% end %>
+
+<h2>Previous Responses</h2>
+<% @complaint.responses.each do |response| %>
+  <div class="response">
+    <p><strong>Response:</strong> <%= response.content %></p>
+    <p><small>Created at: <%= response.created_at %></small></p>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Complaints', admin_complaints_path, class: 'btn btn-secondary' %>

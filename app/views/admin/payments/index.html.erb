@@ -1,0 +1,44 @@
+<h1>Payments for <%= @year %></h1>
+
+<%= link_to 'Add New Payment', new_admin_payment_path, class: 'btn btn-primary' %>
+
+<%= form_with url: admin_payments_path, method: :get, local: true do %>
+  <div class="form-group">
+    <%= label_tag :year, 'Select Year' %>
+    <%= select_tag :year, options_for_select((Date.current.year - 5..Date.current.year).to_a, @year), class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :user_id, 'Select User' %>
+    <%= select_tag :user_id, options_for_select(@users.map { |u| [u.email, u.id] }), include_blank: 'All Users', class: 'form-control' %>
+  </div>
+  <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <% @months.each do |month| %>
+        <th><%= month %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @months.each do |month| %>
+        <% payment = @payments.find_by(month: month) %>
+        <td>
+          <% if payment %>
+            <%= form_with model: payment, url: admin_payment_path(payment), method: :patch, local: true do |form| %>
+              <%= form.select :status, options_for_select([['Paid', 'paid'], ['Overdue', 'overdue']], payment.status), class: 'form-control' %>
+              <%= form.submit 'Update', class: 'btn btn-info' %>
+            <% end %>
+          <% else %>
+            <p>NO PAYMENT DATA</p>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Back to Dashboard', admin_root_path, class: 'btn btn-secondary' %>

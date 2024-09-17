@@ -1,27 +1,8 @@
 <h1>My Profile</h1>
 <p>Email: <%= @user.email %></p>
 
-<h2>Payment Status</h2>
-<% if @payments.present? %>
-  <% @payments.each do |payment| %>
-    <p>Payment: <%= payment.status %></p>
-  <% end %>
-<% else %>
-  <p>No payment information available.</p>
-<% end %>
-
-<h2>Complaints and Suggestions</h2>
-<% if @complaints.present? %>
-  <h3>Your Previous Complaints</h3>
-  <% @complaints.each do |complaint| %>
-    <div class="complaint">
-      <p><%= complaint.content %></p>
-      <p>Response: <%= complaint.response.present? ? complaint.response : "No response yet" %></p>
-    </div>
-  <% end %>
-<% else %>
-  <p>No complaints or suggestions submitted.</p>
-<% end %>
-
 <!-- Link to complaints section for filing a new complaint -->
 <%= link_to 'File a New Complaint', users_complaints_path %>
+
+<!-- Link to view all payments -->
+<%= link_to 'View Payments', users_payments_path %>
