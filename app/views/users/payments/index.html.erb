@@ -14,12 +14,9 @@
         <% payment = @payments.find { |p| p.month == month } %>
         <td>
           <% if payment %>
-            <%= form_with model: payment, url: users_payment_path(payment), method: :patch, local: true do |form| %>
-              <%= form.select :status, options_for_select([['Paid', 'paid'], ['Overdue', 'overdue']], payment.status), class: 'form-control' %>
-              <%= form.submit 'Update', class: 'btn btn-info' %>
-            <% end %>
+            <p>Status: <%= payment.status.capitalize %></p>
           <% else %>
-            No payment data
+            <p>No payment data</p>
           <% end %>
         </td>
       <% end %>
